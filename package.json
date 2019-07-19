@@ -1,0 +1,28 @@
+{
+  "name": "entropy",
+  "version": "1.0.0",
+  "description": "计算信源熵的 Node.js 命令行程序",
+  "main": "index.js",
+  "bin": {
+    "entropy": "bin/app.js"
+  },
+  "scripts": {
+    "test": "eslint --quiet * && istanbul cover _mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangding/entropy.git"
+  },
+  "author": "wangding",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangding/entropy/issues"
+  },
+  "homepage": "https://github.com/wangding/entropy#readme",
+  "devDependencies": {
+    "mocha": "^3.3.0",
+    "eslint": "^4.19.1",
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5"
+  }
+}
