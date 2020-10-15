@@ -1,10 +1,6 @@
 /* global describe, it: true */
 const expect = require('chai').expect,
-      transform = require('../lib/entropy.js').transform,
-      validate = require('../lib/entropy.js').validate,
-      sigma = require('../lib/entropy.js').sigma,
-      h = require('../lib/entropy.js').h,
-      roundFractional = require('../lib/entropy.js').roundFractional;
+      { transform, validate, sigma, h, roundFractional } = require('../index');
 
 describe('transform 函数测试套件', function() {
   it('命令行参数正确，逗号分隔概率值', function(){
@@ -88,16 +84,17 @@ describe('validate 函数测试套件', function() {
     var result = validate(1);
     expect(result.isOK).to.be.ok;
   });
+
   it('概率值非法，不是数字', function(){
     var result = validate('abc');
     expect(result.isOK).not.to.be.ok;
   });
-  
+
   it('概率值非法，小于 0', function(){
     var result = validate(-3);
     expect(result.isOK).not.to.be.ok;
   });
-  
+
   it('概率值非法，大于 1', function(){
     var result = validate(3);
     expect(result.isOK).not.to.be.ok;

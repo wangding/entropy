@@ -4,7 +4,7 @@
   "description": "计算信源熵的 Node.js 命令行程序",
   "main": "index.js",
   "bin": {
-    "entropy": "bin/app.js"
+    "entropy": "bin/entropy"
   },
   "scripts": {
     "test": "eslint --quiet * && istanbul cover _mocha"

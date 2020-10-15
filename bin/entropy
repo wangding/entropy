@@ -1,19 +1,13 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
-const transform = require('../index.js').transform,
-      h = require('../index.js').h,
-      sigma = require('../index.js').sigma,
-      validate = require('../index.js').validate,
-      roundFractional = require('../index.js').roundFractional;
+const { transform, h, sigma, validate, roundFractional } = require('../index');
 
-var p = [], i = 0;
-
-const log = console.log,
+const log   = console.log,
       stdin = process.stdin,
-      exit = process.exit,
-      arg  = process.argv,
-      help = ''
-        + '用法：./entropy.js [-h | --help] [probability]\n'
+      exit  = process.exit,
+      arg   = process.argv,
+      help  = ''
+        + '用法：./bin/entropy [-h | --help] [probability]\n'
         + '\n'
         + '无命令行参数时，程序进入交互输入模式，提示用户输入信源符号的概率分布。\n'
         + '用户按 Ctrl+D 结束输入，程序打印信源符号概率分布，并计算打印该信源熵。\n'
@@ -28,13 +22,15 @@ const log = console.log,
         + '                          1) 逗号分隔，例如：0.1,0.9\n'
         + '                          2) 空格分隔，例如：0.1 0.9';
 
+let p = [], i = 0;
+
 if(arg.length == 3 && (arg[2] === '-h' || arg[2] === '--help')) {
   log(help);
   exit();
 }
 
 if(arg.length > 2) {
-  var msg = transform(arg);
+  let msg = transform(arg);
 
   if(msg.isOK) {
     log('\np = %j\n', msg.p);
@@ -43,7 +39,7 @@ if(arg.length > 2) {
   } else {
     log(msg.reason);
   }
-} 
+}
 
 p = [];
 
@@ -51,7 +47,7 @@ log('请输入信源概率分布：(Ctrl+D 退出输入)');
 process.stdout.write('p0: ');
 
 stdin.on('data', (data) => {
-  var msg = validate(data);
+  let msg = validate(data);
   if(msg.isOK) {
     p.push(Number(data));
     process.stdout.write('p' + (++i) + ': ');
